@@ -21,16 +21,16 @@ text
 
 ## Project Structure
 
+```text
 bittorrent-client/
 ├── client/
-│ ├── torrent.py # Parses .torrent files and extracts metadata
-│ ├── tracker.py # Handles tracker announce/scrape requests
-│ ├── peer.py # Manages peer connections and message protocol
-│ └── piece_manager.py # Coordinates piece requests and validation
-├── main.py # Entry point and CLI interface
+│   ├── torrent.py        # Parses .torrent files and extracts metadata
+│   ├── tracker.py        # Handles tracker announce/scrape requests
+│   ├── peer.py           # Manages peer connections and message protocol
+│   └── piece_manager.py  # Coordinates piece requests and validation
+├── main.py               # Entry point and CLI interface
 └── requirements.txt
 
-text
 
 ## Dependencies
 
@@ -62,7 +62,7 @@ This is a learning project with intentional simplifications:
 
 ## Technical Details
 
-Built using Python 3.8+ with heavy reliance on `asyncio` for non-blocking I/O. The client implements the BitTorrent protocol as specified in [BEP 3](http://www.bittorrent.org/beps/bep_0003.html) [web:69][web:86].
+Built using Python 3.8+ with heavy reliance on `asyncio` for non-blocking I/O. The client implements the BitTorrent protocol as specified in [BEP 3](http://www.bittorrent.org/beps/bep_0003.html).
 
 **Key concepts implemented:**
 - Bencoding/Bdecoding for .torrent metadata parsing
