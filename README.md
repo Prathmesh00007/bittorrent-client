@@ -1,43 +1,75 @@
-## BitTorrent Client in Python (basic idea)
+# BitTorrent Client
 
-Just a small BitTorrent client made in Python. It connects to peers, downloads pieces, checks them, and puts the file back together. Mainly built to get a feel for how torrents actually work under the hood.
+A lightweight peer-to-peer file sharing client built from scratch in Python to understand the BitTorrent protocol at a fundamental level. Implements core BitTorrent features including tracker communication, piece management, and asynchronous peer connections.
 
-## its JOB
+## Features
 
-* Talks to trackers and finds peers
-* Downloads file pieces using asyncio
-* Checks pieces with SHA-1 before saving
-* Works for single or multi-file torrents
-* Shows basic progress while downloading
+- **Tracker Communication**: Connects to HTTP/HTTPS trackers and retrieves peer lists
+- **Concurrent Downloads**: Handles multiple peer connections simultaneously using asyncio
+- **Data Integrity**: Verifies downloaded pieces with SHA-1 hashing before assembly
+- **Multi-file Support**: Downloads both single-file and multi-file torrents
+- **Progress Tracking**: Real-time download progress visualization in terminal
 
-## to use (ik you know alr)
+## Quick Start
 
-```bash
 git clone https://github.com/yourusername/bittorrent-client.git
 cd bittorrent-client
 pip install -r requirements.txt
-python main.py yourfile.torrent
-```
+python main.py path/to/yourfile.torrent
 
-## file structure
+text
 
-```
+## Project Structure
+
 bittorrent-client/
 ├── client/
-│   ├── torrent.py
-│   ├── tracker.py
-│   ├── peer.py
-│   ├── piece_manager.py
-└── main.py
-```
+│ ├── torrent.py # Parses .torrent files and extracts metadata
+│ ├── tracker.py # Handles tracker announce/scrape requests
+│ ├── peer.py # Manages peer connections and message protocol
+│ └── piece_manager.py # Coordinates piece requests and validation
+├── main.py # Entry point and CLI interface
+└── requirements.txt
 
-## Get these first
+text
 
-bencodepy
-requests
-rich
-async-timeout
+## Dependencies
+
+- `bencodepy` - Decoding/encoding torrent metadata
+- `requests` - HTTP tracker communication
+- `rich` - Terminal UI and progress bars
+- `async-timeout` - Timeout handling for async operations
+
+Install all at once:
+pip install bencodepy requests rich async-timeout
+
+text
+
+## How It Works
+
+1. **Parse Torrent**: Reads `.torrent` file and extracts announce URL, piece hashes, and file info
+2. **Contact Tracker**: Sends announce request to get list of active peers in the swarm
+3. **Connect to Peers**: Establishes TCP connections with peers and performs BitTorrent handshake
+4. **Download Pieces**: Requests file pieces from multiple peers concurrently
+5. **Verify & Assemble**: Validates each piece's hash and writes to disk in correct order
+
+## Limitations
+
+This is a learning project with intentional simplifications:
+- Does not support seeding (upload-only mode)
+- No DHT (Distributed Hash Table) support
+- No magnet link support
+- No encryption (BEP 3 only)
+
+## Technical Details
+
+Built using Python 3.8+ with heavy reliance on `asyncio` for non-blocking I/O. The client implements the BitTorrent protocol as specified in [BEP 3](http://www.bittorrent.org/beps/bep_0003.html) [web:69][web:86].
+
+**Key concepts implemented:**
+- Bencoding/Bdecoding for .torrent metadata parsing
+- Binary protocol message framing (handshake, keep-alive, choke, interested, bitfield, request, piece)
+- Piece selection strategy and request pipelining
+- Async peer connection pooling
 
 ## License
 
-MIT, do whatever basically.
+MIT License - feel free to use this code for learning or personal projects
