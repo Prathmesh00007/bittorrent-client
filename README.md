@@ -10,14 +10,6 @@ A lightweight peer-to-peer file sharing client built from scratch in Python to u
 - **Multi-file Support**: Downloads both single-file and multi-file torrents
 - **Progress Tracking**: Real-time download progress visualization in terminal
 
-## Quick Start
-
-git clone https://github.com/yourusername/bittorrent-client.git
-cd bittorrent-client
-pip install -r requirements.txt
-python main.py path/to/yourfile.torrent
-
-text
 
 ## Dependencies
 
