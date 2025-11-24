@@ -17,6 +17,8 @@ cd bittorrent-client
 pip install -r requirements.txt
 python main.py path/to/yourfile.torrent
 
+text
+
 ## Dependencies
 
 - `bencodepy` - Decoding/encoding torrent metadata
