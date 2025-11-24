@@ -17,22 +17,6 @@ cd bittorrent-client
 pip install -r requirements.txt
 python main.py path/to/yourfile.torrent
 
-text
-
-## Project Structure
-
-```text
-bittorrent-client/
-├── client/
-│   ├── torrent.py        # Parses .torrent files and extracts metadata
-│   ├── tracker.py        # Handles tracker announce/scrape requests
-│   ├── peer.py           # Manages peer connections and message protocol
-│   └── piece_manager.py  # Coordinates piece requests and validation
-├── main.py               # Entry point and CLI interface
-└── requirements.txt
-
-'''text
-
 ## Dependencies
 
 - `bencodepy` - Decoding/encoding torrent metadata
@@ -42,8 +26,6 @@ bittorrent-client/
 
 Install all at once:
 pip install bencodepy requests rich async-timeout
-
-text
 
 ## How It Works
 
