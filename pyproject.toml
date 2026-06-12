@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bittorrent-client"
+version = "1.0.0"
+description = "Educational async BitTorrent client in Python"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+keywords = ["bittorrent", "asyncio", "p2p", "networking", "educational"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet",
+    "Topic :: Education",
+    "Framework :: AsyncIO",
+]
+
+# Pure stdlib — no external runtime dependencies!
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.23",
+    "pytest-timeout>=2.2",
+    "pytest-cov>=4.1",
+]
+
+[project.scripts]
+bittorrent = "bittorrent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bittorrent*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+timeout = 120
+log_cli = true
+log_cli_level = "INFO"
+log_format = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+addopts = [
+    "--tb=short",
+    "-v",
+]
+
+[tool.coverage.run]
+source = ["bittorrent"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
